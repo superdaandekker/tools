@@ -62,6 +62,27 @@ body.theme-cosmic {
     --blue: #9f9cff;
 }
 
+/* Skin colour overrides — placed after theme-* so they win the cascade */
+body.skin-mint   { --accent: #54d4aa; --blue: #67a7ff; }
+body.skin-gold   { --accent: #f2c35c; --blue: #ff9f67; }
+body.skin-cosmic { --accent: #7cc8ff; --blue: #9f9cff; }
+
+body.skin-mint .tap-button {
+    background: radial-gradient(circle at 30% 30%, #e0fff5 0%, #54d4aa 42%, #2ea882 100%);
+    color: #0a2a20;
+    box-shadow:
+        0 26px 56px rgba(0, 0, 0, 0.38),
+        0 0 0 6px rgba(84, 212, 170, 0.18),
+        0 0 50px rgba(84, 212, 170, 0.30);
+}
+body.skin-gold .tap-button {
+    background: radial-gradient(circle at 30% 30%, #fff8e0 0%, #f2c35c 42%, #c98a00 100%);
+    color: #2a1f00;
+    box-shadow:
+        0 26px 56px rgba(0, 0, 0, 0.38),
+        0 0 0 6px rgba(242, 195, 92, 0.22),
+        0 0 50px rgba(242, 195, 92, 0.30);
+}
 body.skin-cosmic .tap-button {
     background: radial-gradient(circle at 30% 30%, #d8e6ff 0%, #7cc8ff 42%, #7c7cff 100%);
     color: #0a0a2e;
