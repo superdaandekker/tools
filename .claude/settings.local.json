@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(printf '\\\\n/* Settings dropdown in hero */\\\\n.settings-dropdown {\\\\n    position: relative;\\\\n}\\\\n.settings-dropdown summary {\\\\n    list-style: none;\\\\n    cursor: pointer;\\\\n}\\\\n.settings-dropdown summary::-webkit-details-marker { display: none; }\\\\n.settings-content {\\\\n    position: absolute;\\\\n    right: 0;\\\\n    top: calc\\(100%% + 0.5rem\\);\\\\n    z-index: 10;\\\\n    padding: 0.65rem;\\\\n    display: grid;\\\\n    gap: 0.5rem;\\\\n    min-width: 160px;\\\\n    border-radius: var\\(--radius-md\\);\\\\n}\\\\n\\\\n/* Boost ad card */\\\\n.boost-ad-row {\\\\n    border-color: rgba\\(103, 167, 255, 0.3\\);\\\\n    background: linear-gradient\\(180deg, rgba\\(103, 167, 255, 0.1\\), rgba\\(255,255,255,0.03\\)\\);\\\\n    margin-bottom: 0.65rem;\\\\n}\\\\n.boost-ad-row .upgrade-row-icon {\\\\n    color: var\\(--blue, #67a7ff\\);\\\\n}\\\\n\\\\n/* Ad modal */\\\\n.ad-modal-card {\\\\n    border-color: rgba\\(103, 167, 255, 0.24\\);\\\\n}\\\\n.ad-placeholder {\\\\n    text-align: center;\\\\n    padding: 1.5rem;\\\\n    border-radius: var\\(--radius-md\\);\\\\n    background: rgba\\(255,255,255,0.04\\);\\\\n    border: 1px solid rgba\\(255,255,255,0.07\\);\\\\n}\\\\n.ad-fake-content {\\\\n    font-size: 1.1rem;\\\\n    font-weight: 700;\\\\n    color: var\\(--muted\\);\\\\n    margin-bottom: 0.75rem;\\\\n    letter-spacing: 0.08em;\\\\n}\\\\n')",
+      "Bash(\"C:\\\\Users\\\\Welkom\\\\Desktop\\\\idlegame\\\\idle-game-main\\\\style.css\")",
+      "WebSearch",
+      "WebFetch(domain:cookieclicker.fandom.com)",
+      "WebFetch(domain:cookieclicker.wiki.gg)",
+      "WebFetch(domain:www.oreateai.com)"
+    ]
+  }
+}

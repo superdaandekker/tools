@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Tapper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="ambient-orb orb-one"></div>
+        <div class="ambient-orb orb-two"></div>
+        <div class="ambient-orb orb-three"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <header class="site-header">
+        <span class="site-logo">Money Tapper</span>
+        <nav class="site-nav">
+            <button class="nav-button" data-tab="progress" type="button">Progress</button>
+            <button class="nav-button" data-tab="prestige" type="button">Prestige</button>
+            <button class="nav-button" data-tab="settings" type="button">Settings</button>
+        </nav>
+        <button class="nav-button nav-button--achievements" data-tab="achievements" type="button" title="Achievements">🏆</button>
+    </header>
+
+    <div class="page-shell">
+        <main class="game-grid">
+            <section class="tabs-panel" aria-label="Shop">
+
+                <section id="tab-shop" class="tab-panel active" data-panel="shop">
+                    <div class="shop-subtab-bar" role="tablist" aria-label="Shop categorieën">
+                        <button class="shop-subtab-button active" type="button" role="tab" aria-selected="true" data-subtab="click">Clicking</button>
+                        <button class="shop-subtab-button" type="button" role="tab" aria-selected="false" data-subtab="passive">Businesses</button>
+                        <button class="shop-subtab-button" type="button" role="tab" aria-selected="false" data-subtab="offline">Offline</button>
+                        <button class="shop-subtab-button" type="button" role="tab" aria-selected="false" data-subtab="premium">Premium</button>
+                    </div>
+                    <div id="subtab-content"></div>
+                </section>
+
+                <section id="tab-progress" class="tab-panel" data-panel="progress" hidden>
+                    <div class="tab-header">
+                        <h3>Statistics</h3>
+                        <p class="panel-note">Your progress and milestones.</p>
+                    </div>
+                    <div class="stats-grid" id="stats-list">
+                        <article class="stat-card">
+                            <span class="stat-label">Total earned</span>
+                            <strong class="stat-value" id="total-earned-display">$0</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-label">Lifetime earned</span>
+                            <strong class="stat-value" id="lifetime-earned-display">$0</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-label">Total clicks</span>
+                            <strong class="stat-value" id="total-clicks-display">0</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-label">Total upgrades</span>
+                            <strong class="stat-value" id="total-upgrades-display">0</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-label">Best money per second</span>
+                            <strong class="stat-value" id="best-mps-display">$0/s</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-label">Prestiges</span>
+                            <strong class="stat-value" id="prestige-count-display">0</strong>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="tab-achievements" class="tab-panel" data-panel="achievements" hidden>
+                    <div class="tab-header">
+                        <h3>Achievements</h3>
+                        <p class="panel-note">Verdien goud door categorieën compleet te maken.</p>
+                    </div>
+                    <div id="achievements-grid" class="achievements-grid"></div>
+                </section>
+
+                <section id="tab-prestige" class="tab-panel" data-panel="prestige" hidden>
+                    <div class="tab-header">
+                        <h3>Prestige</h3>
+                        <p class="panel-note">Reset your empire and come back stronger with permanent bonuses.</p>
+                    </div>
+                    <section class="prestige-panel prestige-panel--compact">
+                        <div class="prestige-panel-row">
+                            <div>
+                                <span class="mini-label">Prestige points</span>
+                                <strong id="prestige-points-display">0</strong>
+                            </div>
+                            <div>
+                                <span class="mini-label">Next gain</span>
+                                <strong id="prestige-gain-display">0</strong>
+                            </div>
+                            <div>
+                                <span class="mini-label">Next requirement</span>
+                                <strong id="prestige-next-display">—</strong>
+                            </div>
+                        </div>
+                        <button id="prestige-button" class="primary-button primary-button--sm" type="button" disabled>Prestige For 0 Points</button>
+                    </section>
+                    <div class="prestige-shop-header">
+                        <span class="mini-label">Available gold</span>
+                        <strong id="prestige-shards-display">0</strong>
+                    </div>
+                    <h4 class="prestige-shop-title">Permanent upgrades</h4>
+                    <div id="prestige-upgrades-list" class="upgrade-list"></div>
+                </section>
+
+                <section id="tab-settings" class="tab-panel" data-panel="settings" hidden>
+                    <div class="tab-header">
+                        <h3>Settings</h3>
+                        <p class="panel-note">Save, import and customise your game.</p>
+                    </div>
+                    <div class="tools-grid">
+                        <section class="tool-card">
+                            <h3>Save</h3>
+                            <p class="panel-note">Export your progress as text or import a backup.</p>
+                            <div class="tool-actions" style="margin-bottom:0.65rem">
+                                <button id="export-button" class="utility-button" type="button">Export Save</button>
+                                <button id="import-button" class="utility-button" type="button">Import Save</button>
+                            </div>
+                            <textarea id="save-textarea" class="save-textarea" rows="6" placeholder="Your exported save code appears here."></textarea>
+                            <div class="tool-actions">
+                                <button id="copy-export-button" class="utility-button" type="button">Copy Export</button>
+                                <button id="clear-save-text-button" class="utility-button" type="button">Clear</button>
+                            </div>
+                        </section>
+                        <section class="tool-card">
+                            <h3>Manage</h3>
+                            <p id="save-status" class="save-status">Progress not yet saved.</p>
+                            <div class="tool-actions stacked">
+                                <button id="daily-reward-button" class="utility-button" type="button">Claim Daily Reward</button>
+                                <button id="sound-toggle" class="utility-button" type="button" aria-pressed="false">Sound: Off</button>
+                                <button id="reset-button" class="danger-button" type="button">Reset Progress</button>
+                            </div>
+                        </section>
+                        <section class="tool-card">
+                            <h3>Appearance</h3>
+                            <p class="panel-note">Skins change the colour theme. They unlock automatically.</p>
+                            <div id="skin-switcher" class="skin-switcher"></div>
+                        </section>
+                    </div>
+                </section>
+            </section>
+
+            <section class="click-panel" aria-label="Clicker">
+                <div class="click-stage">
+                    <button id="tap-button" class="tap-button" type="button" aria-label="Tap to earn money">
+                        <span class="tap-coin-symbol">$</span>
+                    </button>
+                    <div id="floating-feedback-layer" class="floating-feedback-layer" aria-hidden="true"></div>
+                    <div id="burst-feedback-layer" class="burst-feedback-layer" aria-hidden="true"></div>
+                </div>
+
+                <div class="resource-bar resource-bar--overlap">
+                    <div class="resource-bar-item">
+                        <span class="mini-label">Money</span>
+                        <strong class="stat-value" id="money-display">$0</strong>
+                    </div>
+                    <div class="resource-bar-item">
+                        <span class="mini-label">Per/s</span>
+                        <strong class="stat-value" id="mps-display">$0/s</strong>
+                    </div>
+                    <div class="resource-bar-item resource-bar-item--gold">
+                        <span class="mini-label">Gold</span>
+                        <strong class="stat-value" id="shards-display">0</strong>
+                    </div>
+                    <div class="resource-bar-item resource-bar-item--prestige">
+                        <span class="mini-label">Prestige</span>
+                        <strong class="stat-value" id="prestige-bonus-display">x1.0</strong>
+                    </div>
+                </div>
+
+                <section class="status-panel">
+                    <div class="status-card">
+                        <span class="mini-label">Click value</span>
+                        <strong id="click-value-display">$1</strong>
+                    </div>
+                    <div class="status-card">
+                        <span class="mini-label">Active boost</span>
+                        <strong id="boost-status-display">No boost active</strong>
+                    </div>
+                </section>
+
+                <section class="event-banner card" id="event-banner" hidden>
+                    <div>
+                        <p class="eyebrow">Live Event</p>
+                        <h2 id="event-title">Calm Market</h2>
+                        <p class="panel-note" id="event-description">Your empire is stable and ready for the next opportunity.</p>
+                    </div>
+                    <div class="event-meta">
+                        <span class="mini-label">Ends in</span>
+                        <strong id="event-timer">0s</strong>
+                        <button id="skip-event-button" class="skip-event-button" type="button" hidden>Pay to skip</button>
+                    </div>
+                </section>
+            </section>
+
+            <aside class="card feed-panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Activity</h2>
+                        <p class="panel-note">Events, purchases &amp; milestones.</p>
+                    </div>
+                    <span class="live-pill">Live</span>
+                </div>
+                <div id="feed-list" class="feed-list"></div>
+                <div class="ad-slot ad-slot--feed">
+                    <span class="ad-slot-label">Advertentie</span>
+                </div>
+            </aside>
+
+        </main>
+        <div class="ad-banner" id="ad-banner-bottom">
+            <div class="ad-slot ad-slot--wide">
+                <span class="ad-slot-label">Advertentie</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+    <div id="ach-tooltip" aria-hidden="true"></div>
+    <div id="event-modal" class="modal-backdrop" hidden>
+        <div class="modal-card event-modal-card" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+            <p class="eyebrow">Live Event</p>
+            <h2 id="event-modal-title">Market Boom</h2>
+            <p id="event-modal-description" class="panel-note">Passive income surges for a short time.</p>
+            <div class="offline-summary">
+                <article class="offline-stat">
+                    <span class="mini-label">Effect</span>
+                    <strong id="event-modal-effect">Passive income +35%</strong>
+                </article>
+                <article class="offline-stat">
+                    <span class="mini-label">Duration</span>
+                    <strong id="event-modal-duration">45s</strong>
+                </article>
+            </div>
+            <button id="close-event-button" class="primary-button" type="button">Start Event</button>
+        </div>
+    </div>
+    <div id="offline-modal" class="modal-backdrop" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="offline-title">
+            <h2 id="offline-title">Welcome Back</h2>
+            <p id="offline-description" class="panel-note">Your empire kept running while you were away.</p>
+            <div class="offline-summary">
+                <article class="offline-stat">
+                    <span class="mini-label">Time away</span>
+                    <strong id="offline-time-display">0s</strong>
+                </article>
+                <article class="offline-stat">
+                    <span class="mini-label">Offline earnings</span>
+                    <strong id="offline-earnings-display">$0</strong>
+                </article>
+            </div>
+            <div class="offline-hero-amount" id="offline-hero-amount">$0</div>
+            <button id="claim-offline-button" class="primary-button" type="button">Claim Earnings</button>
+        </div>
+    </div>
+    <div id="ad-modal" class="modal-backdrop" hidden>
+        <div class="modal-card ad-modal-card" role="dialog" aria-modal="true" aria-labelledby="ad-modal-title">
+            <p class="eyebrow">Advertentie</p>
+            <h2 id="ad-modal-title">2x Boost beschikbaar!</h2>
+            <div class="ad-placeholder">
+                <div class="ad-fake-content">[ Advertentie ]</div>
+                <p class="panel-note">Nog <strong id="ad-countdown-display">5</strong> seconden...</p>
+            </div>
+            <button id="skip-ad-button" class="primary-button" type="button" disabled>Wacht... (5s)</button>
+        </div>
+    </div>
+
+    <!-- Nav dropdown overlay -->
+    <div id="nav-dropdown-backdrop" class="nav-dropdown-backdrop" hidden></div>
+    <div id="nav-dropdown" class="nav-dropdown" hidden>
+        <div class="nav-dropdown-header">
+            <h3 id="nav-dropdown-title" class="nav-dropdown-title"></h3>
+            <button id="nav-dropdown-close" class="nav-dropdown-close" type="button" aria-label="Sluiten">✕</button>
+        </div>
+        <div id="nav-dropdown-body" class="nav-dropdown-body"></div>
+    </div>
+
+    <div id="upgrades-list" style="display:none"></div>
+    <script src="script.js"></script>
+</body>
+</html>
